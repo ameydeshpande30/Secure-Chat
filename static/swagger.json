@@ -1,0 +1,109 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api For Secure Chat Application",
+    "version": "1.0.0",
+    "title": "Secure Chat"
+  },
+  "host": "localhost:5000",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "Public Key",
+      "description": "Everything about Public Key"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/publicKey": {
+      "post": {
+        "tags": [
+          "Public Key"
+        ],
+        "summary": "public key store",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Add Public Key",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/publicKeyData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Valid Input",
+            "schema": {
+              "$ref": "#/definitions/ApiResponse"
+            }
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Public Key"
+        ],
+        "summary": "Public Key Store Retrive",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "uid",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/publicKeyData"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "publicKeyData": {
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "done": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}
